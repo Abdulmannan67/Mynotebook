@@ -7,7 +7,7 @@ connectToMongo();
 const app = express()
 const port =process.env.PORT || 8000;
 
-//Now, we are getting an error as the access to fetch the API from the https://localhost:3000 has been blocked by the CORS policy. To resolve this issue, we have to install the express cors package.
+//Now, we are getting an error as the access to fetch the API from the https://localhost:3000 has been blocked by the CORS policy. 
 
 app.use(cors())
 

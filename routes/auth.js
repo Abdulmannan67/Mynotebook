@@ -18,9 +18,6 @@ const transporter = nodemailer.createTransport({
     pass: process.env.PASS
   }})
 
-
-
-
 const secret = process.env.SECRET;
 
 //user create into database
@@ -35,9 +32,7 @@ router.post(
  
   async (req, res) => {
     let success = false;
-    // ye error validation k liye h
-
-    const errors = validationResult(req);
+   const errors = validationResult(req);
     if (!errors.isEmpty()) {
       return res.status(400).json({ success, errors: errors.array() });
     }
