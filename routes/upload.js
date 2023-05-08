@@ -28,22 +28,27 @@ const fileFilter=(req,file,cb)=>{
 }
  
 var upload = multer({ storage , fileFilter });
-router.post('/img',fetchuser,upload.single('photo'),  (req, res) => { 
+router.post('/img',fetchuser,upload.single('photo'),  async (req, res) => { 
+
+  try {
+    
+  
     const img = req.file.filename;
-    var obj = {
+    var obj = new Imageup({
         user: req.user.id,
         img
-    }
+    })
+      
+         const saveimg = await obj.save();
+         res.send("Submit Sucessfully");
+        } catch (error) {
+          res.send(error)
+          console.log(error)
+        }
+
+            
+        
     
-    Imageup.create(obj, (err, item) => {
-        if (err) {
-            console.log(err);
-        }
-        else {
-            item.save();
-            res.send("Submit Sucessfully");
-        }
-    });
 });
 
 
